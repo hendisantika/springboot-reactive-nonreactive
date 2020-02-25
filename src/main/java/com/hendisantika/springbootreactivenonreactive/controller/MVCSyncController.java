@@ -1,8 +1,13 @@
 package com.hendisantika.springbootreactivenonreactive.controller;
 
+import com.hendisantika.springbootreactivenonreactive.model.Message;
 import com.hendisantika.springbootreactivenonreactive.repository.NonReactiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +23,10 @@ public class MVCSyncController {
 
     @Autowired
     private NonReactiveRepository nonReactiveRepository;
+
+    @PostMapping("/mvcsync")
+    public Message post(@Valid @RequestBody Message message) {
+        return nonReactiveRepository.save(message);
+    }
 }
+
