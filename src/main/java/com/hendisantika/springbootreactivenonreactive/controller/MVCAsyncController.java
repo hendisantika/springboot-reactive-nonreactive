@@ -5,8 +5,11 @@ import com.hendisantika.springbootreactivenonreactive.repository.NonReactiveRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -27,5 +30,10 @@ public class MVCAsyncController {
     @GetMapping("/mvcasync/{id}")
     public CompletableFuture<Message> findById(@PathVariable(value = "id") String id) {
         return CompletableFuture.supplyAsync(() -> nonReactiveRepository.findById(id).orElse(null));
+    }
+
+    @PostMapping("/mvcasync")
+    public CompletableFuture<Message> post(@Valid @RequestBody Message message) {
+        return CompletableFuture.supplyAsync(() -> nonReactiveRepository.save(message));
     }
 }
