@@ -3,6 +3,7 @@ package com.hendisantika.springbootreactivenonreactive.controller;
 import com.hendisantika.springbootreactivenonreactive.model.Message;
 import com.hendisantika.springbootreactivenonreactive.repository.ReactiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,11 @@ public class WebFluxController {
     @PostMapping("/webflux")
     public Mono<Message> postReactive(@Valid @RequestBody Message message) {
         return reactiveRepository.save(message);
+    }
+
+    @DeleteMapping("/webflux")
+    public Mono<Void> deleteAllReactive() {
+        return reactiveRepository.deleteAll();
     }
 
 }
