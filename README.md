@@ -1,6 +1,6 @@
 # Spring Reactive vs Non-Reactive
 
-Link to [Reactive vs Non-Reactive Spring Performance](https://frandorado.github.io/2019/06/26/spring-reactive-vs-non-reactive-performance.html) in blog
+Link to [Reactive vs Non-Reactive Spring Performance](https://frandorado.github.io/spring/2019/06/26/spring-reactive-vs-non-reactive-performance.html) in blog
 
 ## How to test
 
