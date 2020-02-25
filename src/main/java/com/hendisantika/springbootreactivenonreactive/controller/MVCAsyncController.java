@@ -1,8 +1,13 @@
 package com.hendisantika.springbootreactivenonreactive.controller;
 
+import com.hendisantika.springbootreactivenonreactive.model.Message;
 import com.hendisantika.springbootreactivenonreactive.repository.NonReactiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,4 +23,9 @@ public class MVCAsyncController {
 
     @Autowired
     private NonReactiveRepository nonReactiveRepository;
+
+    @GetMapping("/mvcasync/{id}")
+    public CompletableFuture<Message> findById(@PathVariable(value = "id") String id) {
+        return CompletableFuture.supplyAsync(() -> nonReactiveRepository.findById(id).orElse(null));
+    }
 }
