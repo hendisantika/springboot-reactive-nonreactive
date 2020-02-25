@@ -5,8 +5,12 @@ import com.hendisantika.springbootreactivenonreactive.repository.ReactiveReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,6 +30,11 @@ public class WebFluxController {
     @GetMapping("/webflux/{id}")
     public Mono<Message> findByIdReactive(@PathVariable(value = "id") String id) {
         return reactiveRepository.findById(id);
+    }
+
+    @PostMapping("/webflux")
+    public Mono<Message> postReactive(@Valid @RequestBody Message message) {
+        return reactiveRepository.save(message);
     }
 
 }
